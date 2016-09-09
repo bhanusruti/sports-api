@@ -1,0 +1,28 @@
+<div ng-app="app">
+  <div ng-controller="sportsCtrl" ng-init="setup()">
+    <purple-hippo></purple-hippo>
+    <datalist id="names">
+        <option ng-repeat="sport in sports">{{sport.name}}</option>
+        <option ng-repeat="sport in sports">{{sport.players}}</option>           
+      </datalist>
+  Name Filter: <input ng-model="nameFilter">
+  Players Filter: <input ng-model="playersFilter">
+    <table>
+      <tr>
+        <th ng-click="toogleByAttribute('name')">Name</th>
+        <th ng-click="toogleByAttribute('players')">Players</th>
+      </tr>
+      <tr ng-repeat="sport in sports | filter: {name:nameFilter, players:playersFilter} | orderBy:orderAttribute:descending">
+        <td ng-click="toogleName('sports')">{{sport.name}}</td>
+        <td>{{sport.players}}</td>
+        <td ng-click="deleteSport(sport)">DELETE</td>
+      </tr>
+
+      <div>
+      <div ng-repeat="error in deleteErrors">{{error}}</div>
+      <div>
+
+    </table>
+    
+  </div>
+</div>
